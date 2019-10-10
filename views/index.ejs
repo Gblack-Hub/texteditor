@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>G'Editor</title>
+	<link rel="stylesheet" type="text/css" href="/bootstrap-4/css/bootstrap.min.css" />
+</head>
+<body>
+	<header class="mb-5">
+		<% include partials/nav.ejs %>
+	</header>
+	<main class="container-fluid">
+		<form method="POST" action="/">
+			<div class="row" style="height: 100vh;">
+				<div class="col-sm-12 col-md-2 col-lg-2 col-xl-2 bg-dark pt-3">
+					<div class="font-weight-bold text-white mb-2">SAVED FILES</div>
+					<ol class="list-unstyled ml-2">
+						<% for(var i=0; i < data.files.length; i++){ %>
+							<li class="mb-1 text-white">
+								<a href="<%= data.files[i] %>" name="" class="text-white"><%= data.files[i] %></a>
+								<a href="/delete/<%= data.files[i] %>" name="" class="text-white">D</a>
+							</li>
+						<% } %>
+					</ol>
+				</div>
+				<div class="col-sm-12 col-md-5 col-lg-5 col-xl-5 bg-secondary p-2 pt-3">
+					<div class="form-group mb-1">
+						<div class="row">
+							<div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
+								<input type="text" name="infoTitle" value="<%= data.fileTitle %>" class="form-control form-control-sm bg-dark text-white" placeholder="Save as... eg (file.html)" />
+							</div>
+							<div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+								<select class="form-control form-control-sm bg-dark text-white" name="infoType">
+									<option value=".html">.html</option>
+									<option value=".txt">.txt</option>
+								</select>
+							</div>
+							<div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+								<input type="submit" class="btn btn-sm btn-dark btn-block" type="submit" value="Save" />
+							</div>
+						</div>
+					</div>
+					<div class="form-group mb-1">
+						<textarea name="infoBody" class="form-control bg-dark text-white border border-0" style="height: 100vh;" placeholder="Your code here...">
+							<%= data.previewFile %>
+						</textarea>
+					</div>
+				</div>
+				<div class="col-sm-12 col-md-5 col-lg-5 col-xl-5 bg-light p-2">
+					<div>
+						<%- data.previewFile %>
+					</div>
+				</div>
+			</div>
+		</form>
+	</main>
+	<footer class="bg-dark fixed-bottom text-center py-1" style="border-top: 1px solid">
+		<div class="text-white">&copy; G'Black 2019</div>
+	</footer>
+
+	<script type="text/javascript" src="/bootstrap-4/js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="/bootstrap-4/js/popper.js"></script>
+	<script type="text/javascript" src="/bootstrap-4/js/bootstrap.js"></script>
+</body>
+</html
